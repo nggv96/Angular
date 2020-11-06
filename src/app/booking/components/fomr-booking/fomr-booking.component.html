@@ -1,0 +1,18 @@
+<section>
+    <form class="form" [formGroup]="formGroup" >
+        <div class="control-form">
+            <label>Fecha de ingreso:</label>
+            <input formControlName="ingreso" type="date" name="ingresoText" />
+        </div>
+        <div class="control-form">
+            <label>Fecha de salida:</label>
+            <input formControlName="salida" type="date" name="salidaText" />
+        </div>
+        <div class="control-form">
+            <label>Comentario:</label>
+            <input formControlName="coment" type="text" name="comentText" />
+        </div>
+        <br /><br />
+        <button (click)="booking()" [disabled]="formGroup.invalid">Registarme</button>
+    </form>
+</section>

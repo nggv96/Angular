@@ -1,0 +1,30 @@
+section{
+    &:hover {
+        opacity: 1;
+        cursor: pointer;
+      }
+    opacity: 0.9;
+    display: flex;
+    border-radius: 12px;
+    padding: 5px 10px;
+    background-size: cover;
+     margin: 0 6px;
+    h3 {
+        margin: 5px 0px;
+        width: 200px;
+        color: black;
+        font-size: 1.2em;
+        font-weight: 300;
+      }
+      h4 {
+        margin: 5px 0px;
+        color: black;
+        font-size: 0.9em;
+      }
+      div{
+          margin: 0px 10px 0px 0px;
+      }
+      span{
+          margin: none;
+      }
+}
