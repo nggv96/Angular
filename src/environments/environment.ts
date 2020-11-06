@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  urlBase: 'https://bankairbnbapp.herokuapp.com'
+  urlBase: 'https://bankairbnbapp.herokuapp.com',
+  users: 'https://bankairbnbapp.herokuapp.com'
 };
 
 /*

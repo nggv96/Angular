@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UsersService } from 'src/app/services/users/users.service';
+import { IUserLoguin } from 'src/app/shared/models/userLoguin.model';
 
 @Component({
   selector: 'app-form-loguin',
@@ -10,7 +12,9 @@ export class FormLoguinComponent implements OnInit {
 
   public formGroup: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  public userInfo: IUserLoguin;
+
+  constructor(private formBuilder: FormBuilder,private userService: UsersService) { }
 
   ngOnInit(): void {
     this.formInit();
@@ -63,5 +67,8 @@ export class FormLoguinComponent implements OnInit {
   public loguin(): void {
     const data = this.formGroup.value;
     console.log('data register', data);
+    this.userService.loguin(data).subscribe(response => 
+      this.userInfo = response
+      );
   }
 }
