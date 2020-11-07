@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { error } from 'protractor';
 import { UsersService } from 'src/app/services/users/users.service';
 import { IUserSignup } from 'src/app/shared/models/userSignup.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-register',
@@ -13,8 +14,11 @@ export class FormRegisterComponent implements OnInit {
 
   public formGroup: FormGroup;
   public userInfo: IUserSignup;
+  
 
-  constructor(private formBuilder: FormBuilder,private userService: UsersService ) { }
+  constructor(private formBuilder: FormBuilder,
+    private userService: UsersService,
+    private router: Router ) { }
 
   ngOnInit(): void {
     this.formInit();
@@ -69,8 +73,15 @@ export class FormRegisterComponent implements OnInit {
   public register(): void {
     const data = this.formGroup.value;
     console.log('data register', data);
-    this.userService.singUp(data).subscribe(response => 
-      this.userInfo = response
+    this.userService.singUp(data).subscribe(
+      response => {
+        if (response.status === 1 ) {
+          this.router.navigate(['/signin']);
+          console.log('response ', response) 
+        }
+
+      }
+      
       );
   }
 }

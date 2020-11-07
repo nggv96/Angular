@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IExperience } from 'src/app/shared/models/experience.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -8,11 +9,16 @@ import { IExperience } from 'src/app/shared/models/experience.model';
 })
 export class CardComponent implements OnInit {
 
+
   @Input() experience: IExperience;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  public booking(): void{
+    this.router.navigate(['/booking']);
   }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/services/users/users.service';
 import { IUserLoguin } from 'src/app/shared/models/userLoguin.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-loguin',
@@ -11,10 +12,13 @@ import { IUserLoguin } from 'src/app/shared/models/userLoguin.model';
 export class FormLoguinComponent implements OnInit {
 
   public formGroup: FormGroup;
-
   public userInfo: IUserLoguin;
+  
 
-  constructor(private formBuilder: FormBuilder,private userService: UsersService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UsersService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.formInit();
@@ -67,8 +71,15 @@ export class FormLoguinComponent implements OnInit {
   public loguin(): void {
     const data = this.formGroup.value;
     console.log('data register', data);
-    this.userService.loguin(data).subscribe(response => 
-      this.userInfo = response
-      );
+    this.userService.loguin(data).subscribe(
+      response => {
+        if (response.status === 1 ) {
+          console.log('Usuario autenticado')
+          localStorage.setItem('Token', response.token);
+          this.router.navigate(['/home']);
+        } 
+        console.log('response ', response);
+      }
+    );
   }
 }
