@@ -39,9 +39,7 @@ export class FomrBookingComponent implements OnInit {
       const controlBookingDateStart = formGroup.controls['booking_date_start'];
       const controlBookingDateEnd = formGroup.controls['booking_date_end'];
       if(new Date(controlBookingDateStart.value) > new Date(controlBookingDateEnd.value)) {
-        controlBookingDateEnd.setErrors({
-          mustGreaterThan: true
-        });
+        controlBookingDateEnd.setErrors({mustGreaterThan: true});
       }
     }
   }
